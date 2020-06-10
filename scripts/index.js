@@ -1,12 +1,12 @@
-// scratch data i used to get things working originally
-// const url = 'https://api.openweathermap.org/data/2.5/weather?q=Burbank&units=imperial&appid=84a3db98d0d8c0cf2b5702f8cd8244a8';
+// let geoLocator = navigator.geolocation.getCurrentPosition(success, error);
 
-// https.get(url, (response) => {
-//   response.on('data', function(data) {
-//     const weatherData = JSON.parse(data);
-//     const temp = weatherData.main.temp;
-//     const description = weatherData.weather[0].description;
-//     res.send(`The temperature in Burbank is ${temp} degrees farenheight`);
-//   });
+success = (pos) => {
+    var crd = pos.coords;
 
-// });
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+};
+
+let geoLocator = navigator.geolocation.getCurrentPosition(success);
+// console.log(geoLocator);
