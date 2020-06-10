@@ -1,4 +1,5 @@
 // geolocation
+//
 
 const success = (pos) => {
     const crd = pos.coords;
@@ -9,6 +10,7 @@ const success = (pos) => {
 const geoLocator = navigator.geolocation.getCurrentPosition(success);
 
 // weathermap api
+//
 
 // get the weather from open weather map api
 getWeather = (usrLat, usrLon) => {
@@ -56,3 +58,29 @@ const writeWeather = (weather) => {
     parent.appendChild(humidity);
 }
 
+// Trump
+//
+
+getTrump = () => {
+  const url = 'https://www.tronalddump.io';
+  const ext = '/random/quote';
+  axios.get(url + ext)
+  .then((response) => {
+      console.log(response)
+  })
+  .catch(() => console.error (`Could not resolve ${url + ext}`));
+}
+getTrump()
+
+// kanye
+//
+
+getKanye = () => {
+  const url = 'https://api.kanye.rest/'
+  axios.get(url)
+  .then((response) =>{
+      console.log(response)
+  })
+  .catch(() => console.error (`Could not resolve ${url +ext}`));
+}
+getKanye()
