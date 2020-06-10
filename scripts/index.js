@@ -16,7 +16,7 @@ getWeather = (usrLat, usrLon) => {
     .catch(() => console.error(`Could not resolve ${url}`));
 }
 
-window.onload = getWeather(lon, lat);
+// window.onload = getWeather(usrLat, usrLon);
 
 
 // let geoLocator = navigator.geolocation.getCurrentPosition(success, error);
@@ -30,6 +30,7 @@ success = (pos) => {
 };
 
 let geoLocator = navigator.geolocation.getCurrentPosition(success);
+
 // console.log(geoLocator);
 
 
