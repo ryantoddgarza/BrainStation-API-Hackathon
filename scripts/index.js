@@ -11,13 +11,10 @@ getWeather = (usrLat, usrLon) => {
 
   axios.get(url)
     .then((response) => {
-      console.log(response);
+      console.log(response.data.list[0].main);
     })
     .catch(() => console.error(`Could not resolve ${url}`));
 }
-
-// window.onload = getWeather(usrLat, usrLon);
-
 
 // let geoLocator = navigator.geolocation.getCurrentPosition(success, error);
 
@@ -27,14 +24,12 @@ success = (pos) => {
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
+    window.onload = getWeather(crd.latitude, crd.longitude);
 };
 
 let geoLocator = navigator.geolocation.getCurrentPosition(success);
 
 // console.log(geoLocator);
-
-
-
 
 
 // create a new element
