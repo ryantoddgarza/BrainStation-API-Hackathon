@@ -33,8 +33,6 @@ getWeather = (usrLat, usrLon) => {
 
 // write weather info to the dom
 const writeWeather = (weather) => {
-  console.log(weather)
-
   // create a new element
   const newEl = (tag) => {
     return document.createElement(tag);
@@ -44,43 +42,59 @@ const writeWeather = (weather) => {
 
   const temp = newEl('p');
     temp.classList.add('weather__info');
-    temp.innerHTML = weather.temp; // grab object info
+    temp.innerHTML = `Temperature: ${weather.temp} °C`; // grab object info
     parent.appendChild(temp);
 
   const feelsLike = newEl('p');
     feelsLike.classList.add('weather__info');
-    feelsLike.innerHTML = weather.feels_like; // grab object info
+    feelsLike.innerHTML = `Feels like: ${weather.feels_like} °C`; // grab object info
     parent.appendChild(feelsLike);
 
   const humidity = newEl('p');
     humidity.classList.add('weather__info');
-    humidity.innerHTML = weather.humidity; //grab object info
+    humidity.innerHTML = `Humidity: ${weather.humidity} %`; //grab object info
     parent.appendChild(humidity);
 }
 
 // Trump
 //
 
-getTrump = () => {
+const getTrump = () => {
   const url = 'https://www.tronalddump.io';
   const ext = '/random/quote';
   axios.get(url + ext)
   .then((response) => {
-      console.log(response)
+      donQuote(response.data.value)
   })
   .catch(() => console.error (`Could not resolve ${url + ext}`));
 }
-getTrump()
+
+getTrump();
+
+// write quote
+donQuote = (text) => {
+  const don = document.querySelector('.tronaldDump');
+  don.innerText = text;
+}
+
 
 // kanye
 //
 
-getKanye = () => {
+const getKanye = () => {
   const url = 'https://api.kanye.rest/'
   axios.get(url)
   .then((response) =>{
-      console.log(response)
+      kanyeQuote(response.data.quote);
   })
   .catch(() => console.error (`Could not resolve ${url +ext}`));
 }
-getKanye()
+
+getKanye();
+
+// write quote
+kanyeQuote = (text) => {
+  const don = document.querySelector('.kanyeWest');
+  don.innerText = text;
+}
+
