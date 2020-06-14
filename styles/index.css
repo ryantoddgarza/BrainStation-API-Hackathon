@@ -535,7 +535,7 @@ img {
   background: transparent;
   border: none;
   border-radius: 50%;
-  background-image: url(/assets/reload-thin.svg);
+  background-image: url(assets/reload-thin.svg);
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
