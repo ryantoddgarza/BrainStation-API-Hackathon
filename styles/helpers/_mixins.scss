@@ -63,4 +63,11 @@
   }
 }
 
+// Device types
 
+@mixin device ($value) {
+
+  @if $value == 'non-touch' {
+    @media only screen and (hover: hover) and (pointer: fine) { @content  }
+  }
+}

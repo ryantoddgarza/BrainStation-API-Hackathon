@@ -1,6 +1,4 @@
 // geolocation
-//
-
 const success = (position) => {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
@@ -15,8 +13,6 @@ const error = () => {
 navigator.geolocation.getCurrentPosition(success, error);
 
 // weathermap api
-//
-// get the weather from open weather map api
 getWeather = (lat, lon) => {
   const key = '84a3db98d0d8c0cf2b5702f8cd8244a8'
   const units = 'imperial';
@@ -26,7 +22,6 @@ getWeather = (lat, lon) => {
     .then((response) => {
       const list = response.data.list[0];
       parseWeather(list);
-      console.log(list);
     })
     .catch(() => console.error(error));
 };
@@ -66,42 +61,50 @@ const parseWeather = (main) => {
   const weatherContainer = document.getElementById('weather');
   const weather = new Weather(main);
   weatherContainer.innerHTML = weather.render();
-}
-
-// Trump
-const getTrump = () => {
-  const url = 'https://www.tronalddump.io';
-  const ext = '/random/quote';
-  axios.get(url + ext)
-  .then((response) => {
-      donQuote(response.data.value)
-  })
-  .catch(() => console.error (`Could not resolve ${url + ext}`));
 };
 
-getTrump();
+// quote GET requests
+// TODO: This block is a quick fix. Refactor.
+const generateQuotes = () => {
+  // Trump
+  const getTrump = () => {
+    const url = 'https://www.tronalddump.io';
+    const ext = '/random/quote';
+    axios.get(url + ext)
+    .then((response) => {
+        donQuote(response.data.value)
+    })
+    .catch(() => console.error (`Could not resolve ${url + ext}`));
+  };
+  getTrump();
 
-// write quote
-donQuote = (text) => {
-  const trump = document.querySelector('.tronaldDump');
-  trump.innerText = text;
+  // write quote
+  donQuote = (text) => {
+    const trump = document.querySelector('.tronaldDump');
+    trump.innerText = text;
+  };
+
+  // kanye
+  const getKanye = () => {
+    const url = 'https://api.kanye.rest/'
+    axios.get(url)
+    .then((response) =>{
+        kanyeQuote(response.data.quote);
+    })
+    .catch(() => console.error (`Could not resolve ${url +ext}`));
+  };
+  getKanye();
+
+  // write quote
+  kanyeQuote = (text) => {
+    const kanye = document.querySelector('.kanyeWest');
+    kanye.innerText = text;
+  };
 };
+generateQuotes();
 
-// kanye
-const getKanye = () => {
-  const url = 'https://api.kanye.rest/'
-  axios.get(url)
-  .then((response) =>{
-      kanyeQuote(response.data.quote);
-  })
-  .catch(() => console.error (`Could not resolve ${url +ext}`));
-};
-
-getKanye();
-
-// write quote
-kanyeQuote = (text) => {
-  const kanye = document.querySelector('.kanyeWest');
-  kanye.innerText = text;
-};
+// refresh quotes
+document.getElementById('quoteRefreshBtn').addEventListener('click', (event) => {
+  generateQuotes();
+})
 
