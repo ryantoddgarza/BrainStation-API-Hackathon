@@ -1,51 +1,71 @@
 // geolocation
 //
 
-const success = (pos) => {
-    const crd = pos.coords;
-    window.onload = getWeather(crd.latitude, crd.longitude);
+const success = (position) => {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+
+  getWeather(lat, lon);
 };
 
-const geoLocator = navigator.geolocation.getCurrentPosition(success);
+const error = () => {
+  console.error(error)
+};
+
+navigator.geolocation.getCurrentPosition(success, error);
 
 // weathermap api
 //
-
 // get the weather from open weather map api
-getWeather = (usrLat, usrLon) => {
-  // const key = '84a3db98d0d8c0cf2b5702f8cd8244a8'
-  const units = 'metric';
-  const lat = usrLat;
-  const lon = usrLon;
-
+getWeather = (lat, lon) => {
+  const key = '84a3db98d0d8c0cf2b5702f8cd8244a8'
+  const units = 'imperial';
   const url = `https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
 
   axios.get(url)
     .then((response) => {
-      const weatherObj = response.data.list[0].main;
-      writeWeather(weatherObj);
+      const list = response.data.list[0];
+      parseWeather(list);
+      console.log(list);
     })
     .catch(() => console.error(error));
+};
+
+class Weather {
+  constructor(list) {
+    this.temp = Math.round(list.main.temp);
+    this.max = Math.round(list.main.temp_max);
+    this.min = Math.round(list.main.temp_min);
+    this.wind = Math.round(list.wind.speed);
+    this.precip = Math.round(list.rain);
+    this.humidity = Math.round(list.main.humidity);
+    this.feelsLike = Math.round(list.main.feels_like);
+    this.pressure = Math.round(list.main.pressure);
+  }
+  render() {
+    return `
+     <div class="weather__temperature">
+       <div class="weather__current-temp">${this.temp}°</div>
+       <div class="weather__range">
+         <div class="weather__max">↑ ${this.max}°</div>
+         <div class="weather__min">↓ ${this.min}°</div>
+       </div>
+     </div>
+     <div class="weather__details">
+       <div class="weather__wind">wind: ${this.wind} mph</div>
+       <div class="weather__precip">precip: ${this.precip} in</div>
+       <div class="weather__humidity">humidity: ${this.humidity} %</div>
+       <div class="weather__feels-like">feels like: ${this.feelsLike}°</div>
+       <div class="weather__pressure">pressure: ${this.pressure} mb</div>
+     </div>
+    `;
+  }
 }
 
-// write weather info to the dom
-const writeWeather = (weather) => {
-  // create a new element
-  const newEl = (tag) => {
-    return document.createElement(tag);
-  };
-
-  const parent = document.getElementById('weather');
-
-  const temp = newEl('p');
-    temp.classList.add('weather__temperature');
-    temp.innerHTML = `${weather.temp} °C`;
-    parent.appendChild(temp);
-
-  const humidity = newEl('p');
-    humidity.classList.add('weather__details');
-    humidity.innerHTML = `Humidity: ${weather.humidity} %`;
-    parent.appendChild(humidity);
+const parseWeather = (main) => {
+  const weatherContainer = document.getElementById('weather');
+  const weather = new Weather(main);
+  weatherContainer.innerHTML = weather.render();
 }
 
 // Trump
@@ -57,7 +77,7 @@ const getTrump = () => {
       donQuote(response.data.value)
   })
   .catch(() => console.error (`Could not resolve ${url + ext}`));
-}
+};
 
 getTrump();
 
@@ -65,7 +85,7 @@ getTrump();
 donQuote = (text) => {
   const trump = document.querySelector('.tronaldDump');
   trump.innerText = text;
-}
+};
 
 // kanye
 const getKanye = () => {
@@ -75,7 +95,7 @@ const getKanye = () => {
       kanyeQuote(response.data.quote);
   })
   .catch(() => console.error (`Could not resolve ${url +ext}`));
-}
+};
 
 getKanye();
 
@@ -83,5 +103,5 @@ getKanye();
 kanyeQuote = (text) => {
   const kanye = document.querySelector('.kanyeWest');
   kanye.innerText = text;
-}
+};
 
