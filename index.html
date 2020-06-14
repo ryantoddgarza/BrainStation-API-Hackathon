@@ -2,50 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BrainStation Hackathon</title>
+  <title>Weather | Donye</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
-  <header>
-    <h1 class="mainTitleHeading">The Ultimate Tru-nye location based weather resource</h1>
-    <div class="hero"></div>
-  </header>
-  <main>
-   <div class="weatherContainer"></div>
-    <!-- <p>in case you are disappointed with the weather and need some -->
-    <!-- cheering up, find below a quote from your favorite president -->
-    <!-- and favorite musician -->
-    <!-- </p> -->
-    <span class="tronaldDump">
-    Tronald Dump:
-    </span>
-
-    <span class="kanyeWest">
-    Kanye:
-    </span>
+  <main class="home">
+   <section id="weather" class="container weather">
+     <div class="weather__temperature">
+       <div class="weather__current-temp">now°</div>
+       <div class="weather__range">
+         <div class="weather__hi">↑ hi°</div>
+         <div class="weather__lo">↓ lo°</div>
+       </div>
+     </div>
+     <div class="weather__details">
+       <div class="weather__wind">wind:</div>
+       <div class="weather__precip">precip:</div>
+       <div class="weather__humidity">humidity:</div>
+       <div class="weather__feels-like">feels like:</div>
+     </div>
+   </section>
+   <section class="container quote">
+   <button class="quote__refresh-btn"></button>
+     <span class="tronaldDump"></span>
+     <span class="kanyeWest"></span>
+   </section>
   </main>
-  <!-- <button id="location__button">Get Weather & Inspirational Quote</button> -->
-  <!-- <p id="test"></p> -->
-
-  <footer>
-  <h3>Get in touch</h3>
-  <div class="footer__social">
-    <a href="https://www.facebook.com"><img class="footer__social--icons" src="/assets/Icon-facebook.png" alt="facebook"></a>
-    <a href="https://www.instagram.com"><img class="footer__social--icons" src="/assets/Icon-instagram.png" alt="instagram"></a>
-    <a href="https://www.twitter.com"><img class="footer__social--icons" src="/assets/Icon-twitter.png" alt="twitter"></a>
-
-
-    <img src="/assets/trump-kanye-cartoon.png" class="testLogo"></img>
-
-  </div>
-  <div class="footer__contact">
-    <a href="mailto:name@email.com">Send us an Email!</a>
-  </div>
-  </footer>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
   <script src="scripts/index.js"></script>
 </body>
