@@ -1,0 +1,12 @@
+.icon {
+  &--footer {
+    width: 24px;
+    height: 24px;
+    fill: $neutral-300;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      fill: $neutral-500;
+    }
+  }
+}

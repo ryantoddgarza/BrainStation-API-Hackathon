@@ -1,15 +1,13 @@
 # donyewump.app
 
-**Donye**, n. <br>
+**Donye Wump**, n. <br>
 **1.** A singular entity whose combined grandioseness of Donald Trump and Kanye West make said entity irresistibly hilarious.
 
-## What
+## What is it?
 
-Check your local weather and have an uncomfortable chuckle as quotes from these two personalities are concatenated at random.
+Born out of a five hour API based hackathon, [donyewump.app](https://donyewump.app) is an absurdist web application that serves a user local weather data and some "inspirational" words by the unlikely pairing of Donald Trump and Kanye West.
 
-## Why
-
-Concept devised during an API based collaborative hackcthon.
+The app leverages Geolocation, OpenWeatherMap, Kanye.Rest, and TronaldDump APIs.
 
 ## Contributors
 

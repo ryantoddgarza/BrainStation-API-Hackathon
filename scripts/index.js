@@ -106,8 +106,13 @@ class FooterContent {
   }
   render() {
     return `
-      <div>© ${this.date}</div>
-      <a href="https://github.com/ryantoddgarza/donyewump" target="_blank">view on GitHub</a>
+      <a href="https://github.com/ryantoddgarza/donyewump"
+         title="view on GitHub"
+         target="_blank">
+        <svg class="icon--footer">
+          <use xlink:href="/assets/sprite.svg#github-icon"></use>
+        </svg>
+      </a>
     `;
   }
 }
