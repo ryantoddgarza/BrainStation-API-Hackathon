@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ReactGa from 'react-ga';
+import {PageView, initGA} from './utils/Tracking';
 
 import Weather from './components/Weather';
 import Quote from './components/Quote';
@@ -7,8 +7,8 @@ import Footer from './components/Footer';
 
 function App() {
   useEffect(() => {
-    ReactGa.initialize('UA-107706366-4')
-    ReactGa.pageview('/app')
+    initGA('UA-107706366-4');
+    PageView();
   }, [])
   return (
     <div className="site-wrapper">

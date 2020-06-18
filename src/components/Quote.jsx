@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Event } from '../utils/Tracking';
 
 // trump api GET
 const getTrump = () => {
@@ -29,6 +30,11 @@ const generateQuotes = () => {
 
 generateQuotes();
 
+const clickHandler = () => {
+  generateQuotes();
+  Event('Button', 'Refresh', 'Refresh quote');
+}
+
 class Quote extends Component {
   render() {
     return (
@@ -36,7 +42,7 @@ class Quote extends Component {
         <button id="quoteRefreshBtn"
             className="quote__refresh-btn"
             title="refresh quote"
-            onClick={generateQuotes}>
+            onClick={clickHandler}>
         </button>
         <span id="quoteTrump"></span>
         <span id="quoteKanye"></span>
@@ -46,3 +52,4 @@ class Quote extends Component {
 }
 
 export default Quote;
+
