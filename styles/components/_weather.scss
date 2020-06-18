@@ -1,8 +1,22 @@
 .weather {
   display: flex;
-  min-height: 156px;
+  min-height: 174px;
   padding-top: 32px;
   padding-bottom: 32px;
+
+  & * {
+    text-transform: lowercase;
+  }
+
+  & div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__name {
+    color: $neutral-500;
+  }
 
   &__temperature {
     flex: 1 1 auto;

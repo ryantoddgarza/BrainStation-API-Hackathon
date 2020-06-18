@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Weather | Donye</title>
+  <title>donyewump.app</title>
+  <meta name="description" content="Local weather plus a little inspiration from Danye Wump">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/styles/index.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107706366-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-107706366-4');
+  </script>
 </head>
-
-<body>
-  <main class="home">
-   <section id="weather" class="container weather">Loading weather data...</section>
-   <section class="container quote">
-   <button id="quoteRefreshBtn" class="quote__refresh-btn"></button>
-     <span class="tronaldDump"></span>
-     <span class="kanyeWest"></span>
-   </section>
+<body class="home">
+  <main>
+    <section id="weatherContainer" class="container weather">Loading weather data...</section>
+    <section id="quoteContainer" class="container quote">
+      <button id="quoteRefreshBtn" class="quote__refresh-btn"></button>
+      <span id="quoteTrump"></span>
+      <span id="quoteKanye"></span>
+    </section>
   </main>
+  <footer id="footer" class="footer"></footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
   <script src="/scripts/index.js"></script>
 </body>

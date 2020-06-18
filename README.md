@@ -1,4 +1,4 @@
-# donye.io
+# donyewump.app
 
 **Donye**, n. <br>
 **1.** A singular entity whose combined grandioseness of Donald Trump and Kanye West make said entity irresistibly hilarious.
@@ -13,6 +13,6 @@ Concept devised during an API based collaborative hackcthon.
 
 ## Contributors
 
--[Jordan Cheng](https://github.com/jordancheng604)
--[Lucas Bernardini](https://github.com/LucasBernardini)
--[Ryan Todd Garza](https://github.com/ryantoddgarza)
+- [Jordan Cheng](https://github.com/jordancheng604)
+- [Lucas Bernardini](https://github.com/LucasBernardini)
+- [Ryan Todd Garza](https://github.com/ryantoddgarza)

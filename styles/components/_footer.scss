@@ -1,3 +1,19 @@
 .footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: right;
+  color: $neutral-300;
 
+  & a {
+    transition: all 0.2s;
+    &:hover {
+      color: $neutral-500;
+      text-decoration: underline;
+    }
+  }
 }
