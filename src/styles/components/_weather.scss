@@ -1,0 +1,41 @@
+.weather {
+  display: flex;
+  min-height: 174px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  & * {
+    text-transform: lowercase;
+  }
+
+  & div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__name {
+    color: $neutral-500;
+  }
+
+  &__temperature {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__current-temp {
+    font-size: 60px;
+  }
+
+  &__range {
+    display: flex;
+    font-size: 20px;
+    color: $neutral-500;
+  }
+
+  &__details {
+    flex: 1 1 auto;
+    color: $neutral-500;
+  }
+}
