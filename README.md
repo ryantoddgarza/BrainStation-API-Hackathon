@@ -1,7 +1,7 @@
 # donyewump.app
 
 **Donye Wump**, n. <br>
-**1.** An entity whose combined grandioseness of Donald Trump and Kanye West make said entity irresistibly hilarious.
+**1.** An entity whose combined grandioseness of Donald Trump and Kanye West makes said entity irresistibly hilarious.
 
 ## What is it?
 
