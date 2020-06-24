@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import {PageView, initGA} from './utils/Tracking';
+import { PageView, initGA } from './utils/Tracking';
 
 import Weather from './components/Weather';
 import Quote from './components/Quote';
 import Footer from './components/Footer';
 
-function App() {
+const App = () => {
   useEffect(() => {
     initGA('UA-107706366-4');
     PageView();
   }, [])
+
   return (
     <div className="site-wrapper">
       <main>

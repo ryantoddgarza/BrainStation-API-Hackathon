@@ -1,74 +1,75 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// weathermap api GET
-const getWeather = (lat, lon) => {
-  const key = process.env.REACT_APP_OPEN_WEATHER_KEY;
-  const units = 'imperial';
-  const url = `https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
-
-  axios.get(url)
-    .then((response) => {
-      const list = response.data.list[0];
-      parseWeather(list);
-    })
-    .catch((error) => console.error(error));
-};
-
-class WeatherClass {
-  constructor(list) {
-    this.name = list.name;
-    this.temp = Math.round(list.main.temp);
-    this.max = Math.round(list.main.temp_max);
-    this.min = Math.round(list.main.temp_min);
-    this.weatherMain = list.weather[0].main;
-    this.wind = Math.round(list.wind.speed);
-    this.precip = Math.round(list.rain);
-    this.humidity = Math.round(list.main.humidity);
-    this.feelsLike = Math.round(list.main.feels_like);
-    this.pressure = Math.round(list.main.pressure);
-  }
-  render() {
-    return `
-      <div class="weather__temperature">
-       <div class="weather__name">${this.name}</div>
-       <div class="weather__current-temp">${this.temp}°</div>
-       <div class="weather__range">
-         <div class="weather__max">↑ ${this.max}°</div>
-         <div class="weather__min">↓ ${this.min}°</div>
-       </div>
-      </div>
-      <div class="weather__details">
-       <div class="weather__weather-main">${this.weatherMain}</div>
-       <div class="weather__wind">wind: ${this.wind} mph</div>
-       <div class="weather__precip">precip: ${this.precip} in</div>
-       <div class="weather__humidity">humidity: ${this.humidity} %</div>
-       <div class="weather__feels-like">feels like: ${this.feelsLike}°</div>
-       <div class="weather__pressure">pressure: ${this.pressure} mb</div>
-      </div>
-    `;
-  }
-}
-
-const parseWeather = (main) => {
-  const weatherContainer = document.getElementById('weatherContainer');
-  const weather = new WeatherClass(main);
-  weatherContainer.innerHTML = weather.render();
-};
-
 class Weather extends Component {
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(function(position) {
+  state = {
+    list: []
+  }
+
+  getWeather = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
-      getWeather(lat, lon);
+
+      const key = process.env.REACT_APP_OPEN_WEATHER_KEY;
+      const units = 'imperial';
+      const url = `https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&units=${units}&appid=${key}`;
+
+      axios.get(url)
+        .then((res) => {
+          this.setState({list: res.data.list});
+        })
+        .catch((err) => console.error(err));
     });
   }
+
+  componentDidMount() {
+    this.getWeather();
+  }
+
   render() {
-    return (
-      <section id="weatherContainer" className="container weather">Loading weather data...</section>
-    )
+    if (this.state.list.length === 0) {
+      return (
+        <section id="weatherContainer" className="container weather">
+          Loading weather data...
+        </section>
+      )
+    } else {
+      const list = this.state.list[0];
+      const name = list.name;
+      const temp = Math.round(list.main.temp);
+      const max = Math.round(list.main.temp_max);
+      const min = Math.round(list.main.temp_min);
+      const weatherMain = list.weather[0].main;
+      const wind = Math.round(list.wind.speed);
+      const precip = Math.round(list.rain);
+      const humidity = Math.round(list.main.humidity);
+      const feelsLike = Math.round(list.main.feels_like);
+      const pressure = Math.round(list.main.pressure);
+
+      return (
+        <section id="weatherContainer" className="container weather">
+          <div className="weather__temperature">
+           <div className="weather__name">{name}</div>
+           <div className="weather__current-temp">{temp}°</div>
+           <div className="weather__range">
+             <div className="weather__max">↑ {max}°</div>
+             <div className="weather__min">↓ {min}°</div>
+           </div>
+          </div>
+          <div className="weather__details">
+           <div className="weather__weather-main">{weatherMain}</div>
+           <div className="weather__wind">wind: {wind} mph</div>
+           <div className="weather__precip">precip: {precip} in</div>
+           <div className="weather__humidity">humidity: {humidity} %</div>
+           <div className="weather__feels-like">feels like: {feelsLike}°</div>
+           <div className="weather__pressure">pressure: {pressure} mb</div>
+          </div>
+        </section>
+      )
+    }
   }
 }
 
 export default Weather;
+
